@@ -5,6 +5,8 @@
  */
 public class Enigma extends Cryptogram 
 {
+	private char[] lookupTable;
+	
 	public Enigma(int n)
 	{
 		
@@ -38,6 +40,11 @@ public class Enigma extends Cryptogram
 	 * @param lettersByFrequency
 	 */
 	public getHints(String text, String lettersByFrequency)
+	{
+		
+	}
+	
+	private int[] countLetters(String text)
 	{
 		
 	}
