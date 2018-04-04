@@ -19,7 +19,7 @@ public class Enigma extends Cryptogram
 	 */
 	public void setSubstitution(int i, char ch)
 	{
-		
+		lookupTable[i] = ch;
 	}
 	
 	/**
