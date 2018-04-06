@@ -39,7 +39,7 @@ public class Enigma extends Cryptogram
 	 * @param text
 	 * @param lettersByFrequency
 	 */
-	public getHints(String text, String lettersByFrequency)
+	public String getHints(String text, String lettersByFrequency)
 	{
 		
 	}
