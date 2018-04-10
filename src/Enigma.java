@@ -3,7 +3,7 @@
  * @author ezramuratoglu, Kevin Gao
  *
  */
-public class Enigma extends Cryptogram 
+public class Enigma  
 {
 	private char[] lookupTable;
 	
@@ -14,6 +14,8 @@ public class Enigma extends Cryptogram
 	public Enigma(int n)
 	{
 		lookupTable = new char[n];
+		for(int x = 0; x < n; x++)
+			lookupTable[x] = '-';
 	}
 	
 	/**

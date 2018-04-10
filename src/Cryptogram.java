@@ -110,7 +110,7 @@ public class Cryptogram extends JFrame
     Container c = getContentPane();
     c.add(p123, BorderLayout.NORTH);
     c.add(b2, BorderLayout.CENTER);
-
+    
     enigma = new Enigma(letters.length());
     clearSubs();
   }
