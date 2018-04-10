@@ -8,18 +8,19 @@ public class Enigma
 	private char[] lookupTable;
 
 	/**
-	 * constructor
+	 * Constructor that initializes lookupTable to a character array with n elements and sets each element to '-'
+	 * 
 	 * @param n should be the number of letters in the alphabet
 	 */
 	public Enigma(int n)
 	{
 		lookupTable = new char[n];
-		for(int x = 0; x < n; x++)
-			lookupTable[x] = '-';
+		for(int i = 0; i < n; i++)
+			lookupTable[i] = '-';
 	}
 
 	/**
-	 * sets the i-th element of the look-up table to ch
+	 * Sets the i-th element of the look-up table to ch
 	 * @param i
 	 * @param ch
 	 */
@@ -37,28 +38,40 @@ public class Enigma
 	 */
 	public String decode(String text)
 	{
-		for (char i: lookupTable)
-		{
-			System.out.println(i);
-		}
-		boolean isUpperCase;
 		String result = "";
+
+		//Boolean to preserve case of each char
+		boolean isUpperCase;
+
+		//Variable to prevent redundant method calls
+		int numericValueOfA = Character.getNumericValue('A');
+
+		//Loop through text
 		for(int i = 0; i < text.length(); i++)
 		{
 			char character = text.charAt(i);
+
 			isUpperCase = Character.isUpperCase(character);
-			
-			int index = Character.getNumericValue(Character.toUpperCase(character)) - Character.getNumericValue('A');
 
-			char toAppend = lookupTable[index];
+			//Get corresponding index of lookupTable
+			int index = Character.getNumericValue(Character.toUpperCase(character)) - numericValueOfA;
 
-			if(toAppend == '-')
+			//IndexOutOfBounds 
+			if (index < 0 || index >= lookupTable.length)
 				result += character;
-			else if(isUpperCase)
-				result += Character.toUpperCase(toAppend);
-			else 
-				result += Character.toLowerCase(toAppend);
 
+			else
+			{
+				char toAppend = lookupTable[index];
+				
+				//Add appropriate character, preserving Uppercase
+				if(toAppend == '-')
+					result += character;
+				else if(isUpperCase)
+					result += Character.toUpperCase(toAppend);
+				else 
+					result += Character.toLowerCase(toAppend);
+			}
 		}
 		return result;
 	}
