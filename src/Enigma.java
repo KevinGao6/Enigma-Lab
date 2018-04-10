@@ -53,23 +53,6 @@ public class Enigma
 
 			isUpperCase = Character.isUpperCase(character);
 
-			int index = -1;
-			
-			//find index in lookupTable
-			for(int x = 0; x < lookupTable.length; x++)
-				if(Character.toLowerCase(lookupTable[x]) == Character.toLowerCase(character)) 
-					index = x;
-			
-			if(index == -1) result += character;
-			
-			else
-			{	
-				if(isUpperCase)
-					result += Character.toUpperCase(ALPHABET.charAt(index));
-				else 
-					result += Character.toLowerCase(ALPHABET.charAt(index));
-			}
-
 			//Get corresponding index of lookupTable
 			int index = Character.getNumericValue(Character.toUpperCase(character)) - numericValueOfA;
 
@@ -80,7 +63,7 @@ public class Enigma
 			else
 			{
 				char toAppend = lookupTable[index];
-				
+
 				//Add appropriate character, preserving Uppercase
 				if(toAppend == '-')
 					result += character;
@@ -89,7 +72,6 @@ public class Enigma
 				else 
 					result += Character.toLowerCase(toAppend);
 			}
-
 		}
 		return result;
 	}
