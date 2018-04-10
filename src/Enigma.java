@@ -6,7 +6,7 @@
 public class Enigma extends Cryptogram 
 {
 	private char[] lookupTable;
-	
+
 	/**
 	 * constructor
 	 * @param n should be the number of letters in the alphabet
@@ -15,7 +15,7 @@ public class Enigma extends Cryptogram
 	{
 		lookupTable = new char[n];
 	}
-	
+
 	/**
 	 * sets the i-th element of the look-up table to ch
 	 * @param i
@@ -25,7 +25,7 @@ public class Enigma extends Cryptogram
 	{
 		lookupTable[i] = ch;
 	}
-	
+
 	/**
 	 * decodes all the letters in text according to the current lookup table. Leaves all characters
 	 * that are not letters unchanged and preserves the upper/lower case of letters. Returns the 
@@ -42,7 +42,7 @@ public class Enigma extends Cryptogram
 			char character = text.charAt(i);
 			isUpperCase = Character.isUpperCase(character);
 			int index = -1;
-			
+
 			//find index in lookupTable
 			for(int x = 0; x < lookupTable.length; x++)
 				if(lookupTable[x] == character)
@@ -55,11 +55,11 @@ public class Enigma extends Cryptogram
 					result += Character.toLowerCase(lookupTable[index]);
 			else
 				result += character;
-			
+
 		}
 		return result;
 	}
-	
+
 	/**
 	 * Returns computer-generated hints for each letter in the encrypted text.
 	 * @param text
@@ -69,30 +69,39 @@ public class Enigma extends Cryptogram
 	{
 		int[] frequencies = countLetters(text);
 		String result = "";
-		
+
 		int index = 0;
 		int largest = Integer.MIN_VALUE;
-		
+
 		return result;
 	}
-	
+
 	/**
 	 * Private helper method that counts the number of occurrences for each of the letters a - z and saves these counts in an array
 	 * @param text
 	 * @return
 	 */
-	private int[] countLetters(String text)
+	private static int[] countLetters(String text)
 	{
 		int[] counts = new int[26];
-		
+
 		for(int i = 0; i < text.length(); i++)
 		{
 			int j = (int)(text.charAt(i)) - 65;
 			counts[j] = counts[j] ++;
 		}
-		
+
 		return counts;
 	}
-	
-	
+
+	public static void main(String[] args)
+	{
+		int[] test = countLetters("abc");
+		for (int i : test)
+		{
+			System.out.println(i);
+		}
+	}
+
+
 }
