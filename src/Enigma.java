@@ -6,6 +6,7 @@
 public class Enigma  
 {
 	private char[] lookupTable;
+	private final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	
 	/**
 	 * constructor
@@ -47,16 +48,18 @@ public class Enigma
 			
 			//find index in lookupTable
 			for(int x = 0; x < lookupTable.length; x++)
-				if(lookupTable[x] == character)
+				if(Character.toLowerCase(lookupTable[x]) == Character.toLowerCase(character)) 
 					index = x;
-
-			if(index != -1)
-				if(isUpperCase)
-					result += Character.toUpperCase(lookupTable[index]);
-				else 
-					result += Character.toLowerCase(lookupTable[index]);
+			
+			if(index == -1) result += character;
+			
 			else
-				result += character;
+			{	
+				if(isUpperCase)
+					result += Character.toUpperCase(ALPHABET.charAt(index));
+				else 
+					result += Character.toLowerCase(ALPHABET.charAt(index));
+			}
 			
 		}
 		return result;
