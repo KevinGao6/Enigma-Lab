@@ -70,7 +70,10 @@ public class Enigma extends Cryptogram
 		int[] frequencies = countLetters(text);
 		String result = "";
 		
+		int index = 0;
+		int largest = Integer.MIN_VALUE;
 		
+		return result;
 	}
 	
 	/**
