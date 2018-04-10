@@ -37,26 +37,27 @@ public class Enigma
 	 */
 	public String decode(String text)
 	{
+		for (char i: lookupTable)
+		{
+			System.out.println(i);
+		}
 		boolean isUpperCase;
 		String result = "";
 		for(int i = 0; i < text.length(); i++)
 		{
 			char character = text.charAt(i);
 			isUpperCase = Character.isUpperCase(character);
-			int index = -1;
+			
+			int index = Character.getNumericValue(Character.toUpperCase(character)) - Character.getNumericValue('A');
 
-			//find index in lookupTable
-			for(int x = 0; x < lookupTable.length; x++)
-				if(lookupTable[x] == character)
-					index = x;
+			char toAppend = lookupTable[index];
 
-			if(index != -1)
-				if(isUpperCase)
-					result += Character.toUpperCase(lookupTable[index]);
-				else 
-					result += Character.toLowerCase(lookupTable[index]);
-			else
+			if(toAppend == '-')
 				result += character;
+			else if(isUpperCase)
+				result += Character.toUpperCase(toAppend);
+			else 
+				result += Character.toLowerCase(toAppend);
 
 		}
 		return result;
