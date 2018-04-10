@@ -96,14 +96,5 @@ public class Enigma
 		return counts;
 	}
 
-	public static void main(String[] args)
-	{
-		int[] test = countLetters("abc");
-		for (int i : test)
-		{
-			System.out.println(i);
-		}
-	}
-
 
 }
