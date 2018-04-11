@@ -66,7 +66,7 @@ public class Enigma
 
 				//Add appropriate character, preserving Uppercase
 				if(toAppend == '-')
-					result += character;
+					result += '-';
 				else if(isUpperCase)
 					result += Character.toUpperCase(toAppend);
 				else 
