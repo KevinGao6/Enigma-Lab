@@ -63,7 +63,7 @@ public class Enigma
 			else
 			{
 				char toAppend = lookupTable[index];
-				
+
 				//Add appropriate character, preserving Uppercase
 				if(toAppend == '-')
 					result += character;
@@ -83,7 +83,7 @@ public class Enigma
 	 */
 	public String getHints(String text, String lettersByFrequency)
 	{
-		int[] frequencies = countLetters(text);
+		int[] counts = countLetters(text);
 		String result = "";
 
 		int index = 0;
@@ -95,16 +95,22 @@ public class Enigma
 	/**
 	 * Private helper method that counts the number of occurrences for each of the letters a - z and saves these counts in an array
 	 * @param text
-	 * @return
+	 * @return an array with counts of the occurrences for each of the letters a-z
 	 */
 	private static int[] countLetters(String text)
 	{
+		//Integer array to return
 		int[] counts = new int[26];
 
+		//Variable to prevent redundant method calls
+		int numericValueOfA = Character.getNumericValue('A');
+
+		//Loop through the array
 		for(int i = 0; i < text.length(); i++)
 		{
-			int j = (int)(text.charAt(i)) - 65;
-			counts[j] = counts[j] ++;
+			//Add each character to the corresponding index in the array
+			int index = Character.getNumericValue(Character.toUpperCase(text.charAt(i))) - numericValueOfA;
+			counts[index] += 1;
 		}
 
 		return counts;
