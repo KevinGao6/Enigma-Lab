@@ -99,17 +99,18 @@ public class Enigma
 			//Find the number of elements counts[r] such that counts[r] < counts[i] or counts[r] == counts[i] and r < i
 			for (int r = 0; r < counts.length; r ++)
 			{
-				if (r < i && (counts[r] < counts[i] || counts[r] == counts[i]))
-				{
-					rand ++; //p>>H
-				}
+//				if (r != i && (counts[r] < counts[i] || counts[r] == counts[i]))
+//				{
+//					rand ++;
+//				}
+				
+				if (counts[r] < counts[i] || counts[r] == counts[i] && r < i)
+					rand ++;
 			}
 
 			//Hints[i] should be set to lettersByFrequency.charAt(rand)
 			System.out.println(rand + " should be " + lettersByFrequency.charAt(rand));
 			hints = hints.substring(0, rand) + lettersByFrequency.charAt(rand) + hints.substring(rand + 1);
-//			if (rand + 1 < hints.length())
-//				hints += hints.substring(rand + 1);
 			
 			rand = 0;
 		}
