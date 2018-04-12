@@ -83,13 +83,44 @@ public class Enigma
 	 */
 	public String getHints(String text, String lettersByFrequency)
 	{
+		System.out.println("System wanted hints");
+		
+		//String of hints for each letter to return
+		String hints = "--------------------------";
+		
+		//Get counts for each letter
 		int[] counts = countLetters(text);
-		String result = "";
 
-		int index = 0;
-		int largest = Integer.MIN_VALUE;
+		int rand = 0;
 
-		return result;
+		//For each element counts[i] in the letter counts array
+		for (int i = 0; i < counts.length; i ++)
+		{
+			//Find the number of elements counts[r] such that counts[r] < counts[i] or counts[r] == counts[i] and r < i
+			for (int r = 0; r < counts.length; r ++)
+			{
+				if (r < i && (counts[r] < counts[i] || counts[r] == counts[i]))
+				{
+					rand ++; //p>>H
+				}
+			}
+
+			//Hints[i] should be set to lettersByFrequency.charAt(rand)
+			System.out.println(rand);
+			hints = hints.substring(0, rand) + lettersByFrequency.charAt(rand) + hints.substring(rand + 1);
+//			if (rand + 1 < hints.length())
+//				hints += hints.substring(rand + 1);
+			
+			rand = 0;
+		}
+
+		//This number (call it rand) is the rand of the i-th letter of the alphabet in terms
+		//of its frequency in the encrypted text.  So hints[i] should be set to  
+		//lettersByFrequency.charAt(rand).
+
+		System.out.println("Done: " + hints);
+
+		return hints;
 	}
 
 	/**
@@ -110,7 +141,8 @@ public class Enigma
 		{
 			//Add each character to the corresponding index in the array
 			int index = Character.getNumericValue(Character.toUpperCase(text.charAt(i))) - numericValueOfA;
-			counts[index] += 1;
+			if (index >= 0 && index < counts.length)
+				counts[index] += 1;
 		}
 
 		return counts;
