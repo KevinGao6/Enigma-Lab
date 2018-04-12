@@ -5,6 +5,7 @@
  */
 public class Enigma  
 {
+	//Char array which holds the user's guesses for what each code character corresponds to
 	private char[] lookupTable;
 
 	/**
@@ -14,7 +15,10 @@ public class Enigma
 	 */
 	public Enigma(int n)
 	{
+		//Initialize instance variable
 		lookupTable = new char[n];
+		
+		//Set each element in the loopupTable to '-'
 		for(int i = 0; i < n; i++)
 			lookupTable[i] = '-';
 	}
@@ -64,9 +68,9 @@ public class Enigma
 			{
 				char toAppend = lookupTable[index];
 
-				//Add appropriate character, preserving Uppercase
+				//Add appropriate character, preserving the correct case
 				if(toAppend == '-')
-					result += '-';
+					result += character;
 				else if(isUpperCase)
 					result += Character.toUpperCase(toAppend);
 				else 
@@ -82,15 +86,14 @@ public class Enigma
 	 * @param lettersByFrequency
 	 */
 	public String getHints(String text, String lettersByFrequency)
-	{
-		System.out.println("System wanted hints");
-		
+	{		
 		//String of hints for each letter to return
 		String hints = "--------------------------";
 		
 		//Get counts for each letter
 		int[] counts = countLetters(text);
 
+		//Integer to keep track of the number of elements that satisfy the inner if
 		int rand = 0;
 
 		//For each element counts[i] in the letter counts array
@@ -98,28 +101,17 @@ public class Enigma
 		{
 			//Find the number of elements counts[r] such that counts[r] < counts[i] or counts[r] == counts[i] and r < i
 			for (int r = 0; r < counts.length; r ++)
-			{
-//				if (r != i && (counts[r] < counts[i] || counts[r] == counts[i]))
-//				{
-//					rand ++;
-//				}
-				
+			{	
 				if (counts[r] < counts[i] || counts[r] == counts[i] && r < i)
 					rand ++;
 			}
 
 			//Hints[i] should be set to lettersByFrequency.charAt(rand)
-			System.out.println(rand + " should be " + lettersByFrequency.charAt(rand));
 			hints = hints.substring(0, rand) + lettersByFrequency.charAt(rand) + hints.substring(rand + 1);
-			
+		
+			//Reset the count
 			rand = 0;
 		}
-
-		//This number (call it rand) is the rand of the i-th letter of the alphabet in terms
-		//of its frequency in the encrypted text.  So hints[i] should be set to  
-		//lettersByFrequency.charAt(rand).
-
-		System.out.println("Done: " + hints);
 
 		return hints;
 	}
