@@ -106,7 +106,7 @@ public class Enigma
 			}
 
 			//Hints[i] should be set to lettersByFrequency.charAt(rand)
-			System.out.println(rand);
+			System.out.println(rand + " should be " + lettersByFrequency.charAt(rand));
 			hints = hints.substring(0, rand) + lettersByFrequency.charAt(rand) + hints.substring(rand + 1);
 //			if (rand + 1 < hints.length())
 //				hints += hints.substring(rand + 1);
